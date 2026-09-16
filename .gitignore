@@ -4,6 +4,8 @@ dist/
 coverage/
 .DS_Store
 *.log
+data/
+.pglite*
 .env*
 !.env.example
 !**/.env.example
