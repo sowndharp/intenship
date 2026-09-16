@@ -19,7 +19,10 @@ export const Background3D: React.FC<Background3DProps> = ({
     if (!container || !canvas) return;
 
     // Respect accessibility: prefers-reduced-motion
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const prefersReducedMotion =
+      typeof window !== 'undefined' && typeof window.matchMedia === 'function'
+        ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        : false;
 
     // Viewport and device tiering
     const width = container.clientWidth || window.innerWidth;

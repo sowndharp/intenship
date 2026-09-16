@@ -74,7 +74,7 @@ export class AuthService {
       throw {
         status: 401,
         code: 'INVALID_CREDENTIALS',
-        message: 'Invalid username, password, or role.'
+        message: 'Invalid username or password.'
       };
     }
 
@@ -86,7 +86,7 @@ export class AuthService {
       throw {
         status: 401,
         code: 'INVALID_CREDENTIALS',
-        message: 'Invalid username, password, or role.'
+        message: 'Invalid username or password.'
       };
     }
 
@@ -97,7 +97,7 @@ export class AuthService {
       throw {
         status: 401,
         code: 'INVALID_CREDENTIALS',
-        message: 'Invalid username, password, or role.'
+        message: 'Invalid username or password.'
       };
     }
 
@@ -107,7 +107,7 @@ export class AuthService {
         throw {
           status: 401,
           code: 'INVALID_CREDENTIALS',
-          message: 'Invalid username, password, or role.'
+          message: 'Selected portal does not match account role.'
         };
       }
     }

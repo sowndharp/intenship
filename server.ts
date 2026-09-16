@@ -43,17 +43,18 @@ async function bootstrap() {
 
   // In development, mount Vite middleware with shared HTTP server to serve client SPA
   if (!isProduction) {
+    const disableHmr = process.env.DISABLE_HMR === 'true';
     const vite = await createViteServer({
       server: {
         middlewareMode: true,
-        hmr: {
+        hmr: disableHmr ? false : {
           server,
         },
       },
       appType: 'spa',
     });
     app.use(vite.middlewares);
-    logger.info('Vite development middleware mounted with shared HTTP server');
+    logger.info(`Vite development middleware mounted (HMR: ${disableHmr ? 'disabled' : 'active'})`);
   } else {
     app.use(express.static(distPath));
     app.get('*', (req, res) => {

@@ -9,7 +9,7 @@ import { storage } from '../utils/storage';
  */
 export function getApiBaseUrl(): string {
   const envUrl = (import.meta.env?.VITE_API_URL || '').trim();
-  if (!envUrl) {
+  if (!envUrl || envUrl === 'undefined' || envUrl === 'null') {
     return '/api';
   }
   // Strip any trailing slashes
@@ -54,7 +54,11 @@ export function buildApiUrl(endpoint: string): string {
     return parsed.toString();
   } catch {
     // Fallback if URL parsing fails
-    return `${base}${cleanEndpoint}`;
+    const cleanB = base.replace(/\/+$/, '');
+    if (cleanB.endsWith('/api') && cleanEndpoint.startsWith('/api')) {
+      cleanEndpoint = cleanEndpoint.substring(4);
+    }
+    return `${cleanB}${cleanEndpoint}`;
   }
 }
 

@@ -31,6 +31,7 @@ export function errorHandler(
 
   res.status(status).json({
     success: false,
+    message,
     error: message,
     code,
     timestamp: new Date().toISOString()
