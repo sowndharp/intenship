@@ -32,7 +32,8 @@ export const NotificationBell: React.FC = () => {
     try {
       const res = await NotificationService.getUnreadCount();
       if (res.success) {
-        setUnreadCount(res.count);
+        const count = typeof res.count === 'number' ? res.count : (res as any).data?.count ?? 0;
+        setUnreadCount(count);
       }
     } catch {
       // Quiet fail on network polling

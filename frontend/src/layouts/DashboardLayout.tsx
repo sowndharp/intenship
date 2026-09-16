@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
 import { TechHeader } from '../components/TechHeader';
+import { Background3D } from '../components/Background3D';
 import { useAuth } from '../hooks/useAuth';
 import { 
   Briefcase, 
@@ -72,20 +73,37 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
 
   return (
     <div className="min-h-screen bg-[#070a11] text-slate-100 flex flex-col relative overflow-x-hidden">
-      {/* Full-Screen Immersive Modern Campus & Innovation Hub Background */}
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      {/* Visual System Layering:
+          1. Vibrant Campus Architecture & Technology Innovation Center Image
+          2. Interactive 3D WebGL Digital Career Intelligence Network & Data Stream
+          3. Subtle Atmospheric Vignette for Perfect Card Legibility
+      */}
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
+        {/* Full-Screen Campus Architecture Background Image */}
         <img
           src="/images/internhub-dashboard-bg.webp"
-          alt="Innovation Hub Background"
+          alt="INTERNHUB Campus Network"
           aria-hidden="true"
           referrerPolicy="no-referrer"
-          className="w-full h-full object-cover object-center filter brightness-[0.72] contrast-[1.10]"
+          onError={(e) => {
+            // Reliable fallback
+            const target = e.currentTarget;
+            if (!target.src.includes('internhub-login-bg')) {
+              target.src = '/images/internhub-login-bg.webp';
+            }
+          }}
+          className="w-full h-full object-cover object-center filter brightness-[0.76] contrast-[1.10] opacity-80 transition-opacity duration-700"
         />
-        {/* Subtle vignette so edges blend smoothly and center architectural campus is prominently visible */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#070a11] via-[#070a11]/45 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#070a11]/75 via-transparent to-[#070a11]/85" />
-        <div className="absolute inset-0 bg-[#070a11]/25 backdrop-blur-[0.5px]" />
-        {/* Subtle atmospheric accents */}
+
+        {/* Dynamic 3D WebGL Digital Career Intelligence & Technology Network */}
+        <Background3D intensity="vibrant" />
+
+        {/* Balanced contrast vignettes - keeps content 100% readable while leaving center & depth clearly visible */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#070a11]/95 via-[#070a11]/45 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#070a11]/75 via-transparent to-[#070a11]/85 pointer-events-none" />
+        <div className="absolute inset-0 bg-[#070a11]/20 backdrop-blur-[0.3px] pointer-events-none" />
+
+        {/* Subtle atmospheric ambient glow */}
         <div className="absolute top-1/4 left-1/10 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-1/3 right-1/10 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
       </div>
@@ -100,7 +118,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
         {/* Left Technical Sidebar */}
         <aside className="w-full md:w-64 shrink-0 flex flex-col gap-4">
           {/* Identity Card */}
-          <div className="bg-[#0b0f19]/80 backdrop-blur-md border border-slate-800/80 p-4 rounded-xl shadow-lg">
+          <div className="bg-[#0b1120]/75 backdrop-blur-md border border-slate-800/90 hover:border-slate-700/80 p-4 rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.35)] transition-all">
             <div className="flex items-center gap-2 mb-3">
               <Terminal className="w-4 h-4 text-cyan-400" />
               <span className="font-mono text-xs font-bold text-slate-200 tracking-wider">
@@ -125,7 +143,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
           </div>
 
           {/* Navigation Items */}
-          <div className="bg-[#0b0f19]/80 backdrop-blur-md border border-slate-800/80 p-3 rounded-xl shadow-lg">
+          <div className="bg-[#0b1120]/75 backdrop-blur-md border border-slate-800/90 p-3 rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.35)]">
             <div className="font-mono text-[10px] text-slate-400 uppercase tracking-widest px-2 py-1 mb-1">
               INTERFACE MODULES
             </div>
@@ -136,9 +154,9 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
                   <Link
                     key={item.path}
                     to={item.path}
-                    className={`flex items-center gap-2.5 px-3 py-2 rounded-lg font-mono text-xs transition-colors ${
+                    className={`flex items-center gap-2.5 px-3 py-2 rounded-lg font-mono text-xs transition-all duration-150 ${
                       item.active
-                        ? 'bg-cyan-950/70 text-cyan-300 border border-cyan-700/80 font-medium shadow-sm'
+                        ? 'bg-cyan-950/70 text-cyan-300 border border-cyan-600/70 font-medium shadow-[0_0_15px_rgba(6,182,212,0.15)]'
                         : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/60 border border-transparent'
                     }`}
                   >
@@ -151,7 +169,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
           </div>
 
           {/* Operational Status Box */}
-          <div className="bg-[#0b0f19]/80 backdrop-blur-md border border-slate-800/80 p-4 rounded-xl shadow-lg space-y-2 font-mono text-[11px]">
+          <div className="bg-[#0b1120]/75 backdrop-blur-md border border-slate-800/90 p-4 rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.35)] space-y-2 font-mono text-[11px]">
             <div className="flex items-center gap-2 text-slate-300 font-semibold">
               <Activity className="w-3.5 h-3.5 text-emerald-400" />
               <span>SUBSYSTEM READINESS</span>

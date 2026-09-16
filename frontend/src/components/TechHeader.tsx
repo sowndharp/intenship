@@ -33,7 +33,7 @@ export const TechHeader: React.FC<TechHeaderProps> = ({ systemTitle = 'SYSTEM CO
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-slate-800/80 bg-[#090d16]/95 backdrop-blur-md px-4 lg:px-6 py-2.5">
+    <header className="sticky top-0 z-40 w-full border-b border-slate-800/90 bg-[#080c16]/85 backdrop-blur-md px-4 lg:px-6 py-2.5 shadow-[0_4px_25px_rgba(0,0,0,0.35)] transition-all">
       <div className="flex items-center justify-between gap-4">
         {/* Brand & Subtitle */}
         <div className="flex items-center gap-3">

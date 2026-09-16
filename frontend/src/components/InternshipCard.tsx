@@ -46,7 +46,7 @@ export const InternshipCard: React.FC<InternshipCardProps> = ({
   return (
     <div
       id={`internship-card-${internship.id}`}
-      className="bg-[#0b101b]/85 backdrop-blur-md border border-slate-800/80 hover:border-cyan-500/50 transition-all rounded-xl p-5 flex flex-col justify-between group shadow-md hover:shadow-cyan-950/30"
+      className="bg-[#0b1120]/75 backdrop-blur-md border border-slate-800/90 hover:border-cyan-500/60 transition-all duration-200 rounded-xl p-5 flex flex-col justify-between group shadow-[0_4px_20px_rgba(0,0,0,0.35)] hover:shadow-[0_8px_30px_rgba(6,182,212,0.12)] hover:-translate-y-0.5"
     >
       <div className="space-y-4">
         {/* Header Row */}
